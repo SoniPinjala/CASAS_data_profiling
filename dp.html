@@ -1,0 +1,187 @@
+<html>
+  <!-- <link rel="stylesheet" href="dp.css"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font: 24px 'Roboto', sans-serif;
+      background: url("images/someTree.jpg") no-repeat;
+      background-size: cover;
+    }
+
+    header {
+      opacity: 0.9;
+      width: 100%;
+      height: 85px;
+      position: fixed;
+      z-index: 1000;
+      background-color: #96C339;
+    }
+
+    header h1#logo {
+      float: left;
+      font-family: "Roboto", sans-serif;
+      font-size: 40px;
+      color: #FFF;
+      font-weight: 400;
+      margin-left: 35px;
+    }
+
+    header nav {
+      display: inline-block;
+      float: right;
+    }
+
+    header nav a {
+      line-height: 100px;
+      margin-left: 20px;
+      margin-right: 20px;
+      color: #FFF;
+      font-weight: 700;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    a {
+      font-family: 'Droid Sans', serif;
+      color: white;
+      text-decoration: none;
+      line-height: 40px;
+    }
+
+    .active {
+      font-family: 'Droid Sans', serif;
+      font-size: 22px;
+      color: #000;
+      text-decoration: none;
+      line-height: 40px;
+    }
+
+    #about {
+      background-color: #fff;
+      height: 100vh;
+      width: 100vw;
+      opacity: 0.6;
+    }
+
+    #skills {
+      background-color: #fff;
+      height: 100vh;
+      width: 100vw;
+      opacity: 0.6;
+    }
+
+    #contact {
+      background-color: #fff;
+      height: 100vh;
+      width: 100vw;
+      opacity: 0.6;
+    }
+
+    @media all and (max-width: 770px) {
+      header h1#logo {
+        font-size: 30px;
+        display: block;
+        float: none;
+        margin: 0 auto;
+        height: 100px;
+        line-height: 55px;
+        text-align: center;
+      }
+
+      header nav {
+        display: block;
+        float: none;
+        height: 50px;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: -65px;
+      }
+
+      header nav a {
+        font-size: 15px;
+        line-height: 50px;
+        margin: 0 5px;
+      }
+    }
+  </style>
+<body>
+  <div class="wrapper">
+    <header class="nav">
+      <h1 id="logo">Data Visualization</h1>
+      <nav>
+        <a href="home.html" class="active">About</a>
+        <a href="sensor.html">Sensor-Activity Chart</a>
+        <a href="concurrent.html">Concurrent Activity</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+    <div id="about" class="section"></div>
+    <div id="skills" class="section"></div>
+    <div id="contact" class="section"></div>
+    <script> (function () {
+      
+        // Where Navigation text links to
+        const section = document.querySelectorAll(".section");
+        // Navigation bar wrapper
+        const nav = document.querySelector(".nav");
+        // Navigation anchor text
+        const anchors = document.querySelectorAll(".visible");
+      
+        // Set
+        const sections = {};
+      
+        'use strict';
+        // Initial scroll state
+        let scrollPos = 0;
+        // Scroll event
+        let scrolling = false;
+        document.addEventListener('scroll', scrollEvent)
+        // Detects scroll state and compares it with the new one to fade in/fade out.
+        function scrollEvent() {
+          scrolling = true;
+          setInterval(function () {
+          if (scrolling) {
+            scrolling = false;
+            nav.style.transition = "all 1.0s";
+            nav.style.opacity = 1;
+            nav.style.visibility = "visible"
+          }
+        }, 250);
+          scrollPos = (document.body.getBoundingClientRect()).top;
+      
+      
+          // Turn each dom anchor into and array and iterate through each (by id)
+          const arr = Array.from(section)
+          arr.forEach(function (el) {
+            sections[el.id] = el.offsetTop;
+          });
+      
+          const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+          Object.keys(sections).forEach((el) => {
+            if (sections[el] <= scrollPosition) {
+              document.querySelector('.active').setAttribute('class', ' ');
+              document.querySelector('a[href*=' + el + ']').setAttribute('class', 'active');
+            }
+          })
+        }
+      
+        // Keep the scroll function from constantly firing. 
+        setInterval(function () {
+          if (scrolling) {
+            scrolling = false;
+          }
+        }, 250);
+      
+        // Start scroll event
+        scrollEvent();
+      
+      }());
+      </script>
+  </div>
+</body>
+
+</html>

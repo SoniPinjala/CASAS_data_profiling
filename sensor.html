@@ -1,0 +1,1166 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+        <link rel="stylesheet" href="sensor.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Sensor-Activity</title>
+
+		<!-- <style type="text/css">
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 1000px; 
+    max-width: 5000px;
+    margin: 1em auto;
+}
+
+/* .highcharts-legend table{
+    margin-right: 10px;
+} */
+
+
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse; 
+	border: 0.2px solid #EBEBEB;
+	/* margin: 10px auto; */
+	text-align: center;
+	width: 100%;
+	max-width: 1000px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 1000;
+    padding: 0.1em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.1em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+/* .highcharts-title {
+    fill: #434348;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    font-size: 2em;
+    margin-bottom: 500px;
+} */
+
+#container {
+	height: 700px;
+	width: 900px;
+	margin: 0 auto;
+}
+
+.title{
+    margin-left: 220px;
+    margin-right: 200px;
+    border-style: solid;
+    border-color: chartreuse;
+}
+
+
+		</style> -->
+	</head>
+	<body>
+
+        <header class="nav">
+            <h1 id="logo">Data Visualization</h1>
+            <nav>
+                <a href="home.html" class="active">About</a>
+                <a href="sensor.html">Sensor-Activity Chart</a>
+                <a href="concurrent_r1.html">Concurrent Activity R1</a>
+                <a href="concurrent_r2.html">Concurrent Activity R2</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+    <!-- <h2 class="title">Sensor-Activity Data Visualisation</h2> -->
+
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    
+</figure>
+
+<div style="display:none">
+    <!-- Source: http://or.water.usgs.gov/cgi-bin/grapher/graph_windrose.pl -->
+    
+    <table id="freq" border="0" cellspacing="0" cellpadding="0">
+        <tr nowrap bgcolor="#CCCCFF">
+            <th colspan="10" class="hdr">Table of Frequencies</th>
+        </tr>
+        <tr nowrap="" bgcolor="#CCCCFF">
+            <th class="freq">Activity</th>
+            <th class="freq">Cleaning</th>
+            <th class="freq">bed_to_toilet</th>
+            <th class="freq">breakfast</th>
+            <th class="freq">groom</th>
+            <th class="freq">sleep</th>
+            <th class="freq">work_at_computer</th>
+            <th class="freq">work_at_dining_room_table</th>
+            <th class="freq">prepare_dinner</th>
+            <th class="freq">prepare_lunch</th>
+            <th class="freq">watch_TV</th>
+            <th class="freq">Wash_bathtub</th>
+          </tr>
+
+          
+
+        <tr nowrap="">
+      <td class="dir">AD1-A</td>
+      <td class="data">0.00</td><!--Cleaning -->
+      <td class="data">20.00</td><!--bed_to_toilet -->
+      <td class="data">22.00</td><!--breakfast -->
+      <td class="data">0.00</td><!--groom -->
+      <td class="data">0.00</td><!--sleep -->
+      <td class="data">0.00</td><!--work_at_computer -->
+      <td class="data">0.00</td><!--work_at_dining_room_table -->
+      <td class="data">102.00</td><!--prepare_dinner -->
+      <td class="data">6.00</td><!--prepare_lunch -->
+      <td class="data">6.00</td><!--watch_TV -->
+      <td class="data">0.00</td><!--Wash_bathtub -->
+    </tr>  
+
+        <tr nowrap="" bgcolor="#DDDDDD">
+      <td class="dir">AD1-B</td>
+      <td class="data">0.00</td><!--Cleaning -->
+      <td class="data">9.00</td><!--bed_to_toilet -->
+      <td class="data">1.00</td><!--breakfast -->
+      <td class="data">0.00</td><!--groom -->
+      <td class="data">0.00</td><!--sleep -->
+      <td class="data">0.00</td><!--work_at_computer -->
+      <td class="data">0.00</td><!--work_at_dining_room_table -->
+      <td class="data">16.00</td><!--prepare_dinner -->
+      <td class="data">14.00</td><!--prepare_lunch -->
+      <td class="data">2.00</td><!--watch_TV -->
+      <td class="data">0.00</td><!--Wash_bathtub -->
+    </tr>
+
+
+        <tr nowrap="">
+      <td class="dir">AD1-C</td>
+      <td class="data">0.00</td><!--Cleaning -->
+      <td class="data">0.00</td><!--bed_to_toilet -->
+      <td class="data">0.00</td><!--breakfast -->
+      <td class="data">0.00</td><!--groom -->
+      <td class="data">0.00</td><!--sleep -->
+      <td class="data">0.00</td><!--work_at_computer -->
+      <td class="data">0.00</td><!--work_at_dining_room_table -->
+      <td class="data">0.00</td><!--prepare_dinner -->
+      <td class="data">11.00</td><!--prepare_lunch -->
+      <td class="data">4.00</td><!--watch_TV -->
+      <td class="data">0.00</td><!--Wash_bathtub -->
+    </tr>
+
+
+       <tr nowrap="" bgcolor="#DDDDDD">
+      <td class="dir">D08</td>
+      <td class="data">0.00</td><!--Cleaning -->
+      <td class="data">2.00</td><!--bed_to_toilet -->
+      <td class="data">1.00</td><!--breakfast -->
+      <td class="data">0.00</td><!--groom -->
+      <td class="data">0.00</td><!--sleep -->
+      <td class="data">0.00</td><!--work_at_computer -->
+      <td class="data">0.00</td><!--work_at_dining_room_table -->
+      <td class="data">6.00</td><!--prepare_dinner -->
+      <td class="data">2.00</td><!--prepare_lunch -->
+      <td class="data">0.00</td><!--watch_TV -->
+      <td class="data">0.00</td><!--Wash_bathtub -->
+    </tr>
+
+
+        <tr nowrap="">
+      <td class="dir">D09</td>
+      <td class="data">0.00</td><!--Cleaning -->
+      <td class="data">6.00</td><!--bed_to_toilet -->
+      <td class="data">10.00</td><!--breakfast -->
+      <td class="data">0.00</td><!--groom -->
+      <td class="data">0.00</td><!--sleep -->
+      <td class="data">0.00</td><!--work_at_computer -->
+      <td class="data">4.00</td><!--work_at_dining_room_table -->
+      <td class="data">18.00</td><!--prepare_dinner -->
+      <td class="data">12.00</td><!--prepare_lunch -->
+      <td class="data">3.00</td><!--watch_TV -->
+      <td class="data">0.00</td><!--Wash_bathtub -->
+    </tr>
+
+
+        <tr nowrap="" bgcolor="#DDDDDD">
+      <td class="dir">D10</td>
+      <td class="data">0.00</td><!--Cleaning -->
+      <td class="data">0.00</td><!--bed_to_toilet -->
+      <td class="data">0.00</td><!--breakfast -->
+      <td class="data">0.00</td><!--groom -->
+      <td class="data">0.00</td><!--sleep -->
+      <td class="data">0.00</td><!--work_at_computer -->
+      <td class="data">0.00</td><!--work_at_dining_room_table -->
+      <td class="data">0.00</td><!--prepare_dinner -->
+      <td class="data">4.00</td><!--prepare_lunch -->
+      <td class="data">0.00</td><!--watch_TV -->
+      <td class="data">0.00</td><!--Wash_bathtub -->
+    </tr>
+
+
+        <tr nowrap>
+            <td class="dir">D12</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 0 </td>
+        </tr>
+        <tr nowrap bgcolor="#DDDDDD">
+            <td class="dir">D15</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">I03</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+
+        <tr nowrap>
+            <td class="dir">L04</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M01</td>
+            <td class="data"> 65.00 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 10.00 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap bgcolor="#DDDDDD">
+            <td class="dir">M02</td>
+            <td class="data"> 23 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 9 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap bgcolor="#DDDDDD">
+            <td class="dir">M03</td>
+            <td class="data"> 17 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap bgcolor="#DDDDDD">
+            <td class="dir">M04</td>
+            <td class="data"> 17 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M05</td>
+            <td class="data"> 6 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+        </tr> 
+
+        <tr nowrap bgcolor="#DDDDDD">
+            <td class="dir">M06</td>
+            <td class="data"> 33 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 72 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M07</td>
+            <td class="data"> 50 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 44 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M08</td>
+            <td class="data"> 63 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 8 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 8 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 30 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M09</td>
+            <td class="data"> 46 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 10 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 16 </td>
+            <td class="data"> 35 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M10</td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M11</td>
+            <td class="data"> 24 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M12</td>
+            <td class="data"> 12 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M13</td>
+            <td class="data"> 23 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 9 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1029 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M14</td>
+            <td class="data"> 42 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 16 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 12 </td>
+            <td class="data"> 9 </td>
+            <td class="data"> 19 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M15</td>
+            <td class="data"> 30 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 22 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 21 </td>
+            <td class="data"> 29 </td>
+            <td class="data"> 15 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M16</td>
+            <td class="data"> 30 </td>
+            <td class="data"> 8 </td>
+            <td class="data"> 51 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 10 </td>
+            <td class="data"> 79 </td>
+            <td class="data"> 45 </td>
+            <td class="data"> 10 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+        
+        <tr nowrap>
+            <td class="dir">M17</td>
+            <td class="data"> 48 </td>
+            <td class="data"> 31 </td>
+            <td class="data"> 59 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 17 </td>
+            <td class="data"> 97 </td>
+            <td class="data"> 49 </td>
+            <td class="data"> 14 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M18</td>
+            <td class="data"> 65 </td>
+            <td class="data"> 14 </td>
+            <td class="data"> 16 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 15 </td>
+            <td class="data"> 25 </td>
+            <td class="data"> 20 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M19</td>
+            <td class="data"> 103 </td>
+            <td class="data"> 7 </td>
+            <td class="data"> 22 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 19 </td>
+            <td class="data"> 12 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M20</td>
+            <td class="data"> 8 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+        
+          
+        <tr nowrap>
+            <td class="dir">M21</td>
+            <td class="data"> 110 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 25 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 12 </td>
+            <td class="data"> 6 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M22</td>
+            <td class="data"> 53 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M23</td>
+            <td class="data"> 41 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M24</td>
+            <td class="data"> 70 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 7 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M25</td>
+            <td class="data"> 47 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M26</td>
+            <td class="data"> 7 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M27</td>
+            <td class="data"> 9 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 11 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M28</td>
+            <td class="data"> 2 </td>
+            <td class="data"> 6 </td>
+            <td class="data"> 14 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+        </tr>
+
+          
+        <tr nowrap>
+            <td class="dir">M29</td>
+            <td class="data"> 1 </td>
+            <td class="data"> 17 </td>
+            <td class="data"> 9 </td>
+            <td class="data"> 17 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M30</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 22 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 23 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 7 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M31</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 989 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M32</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 6 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 10 </td>
+            <td class="data"> 6 </td>
+            <td class="data"> 45 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M33</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 7 </td>
+            <td class="data"> 6 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M34</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 180 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M35</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 6 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 231 </td>
+            <td class="data"> 6 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M36</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 24 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 22 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 10 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M37</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 48 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 14 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M38</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 107 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 78 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M39</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 55 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 34 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+            
+        <tr nowrap>
+            <td class="dir">M40</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 34 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 11 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M41</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 18 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M42</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 13 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 15 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M43</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 20 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 14 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M44</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 17 </td>
+            <td class="data"> 6 </td>
+            <td class="data"> 16 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 57 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M45</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 559 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M46</td>
+            <td class="data"> 1 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 11 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M47</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 148 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M48</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 10 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 230 </td>
+            <td class="data"> 16 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M49</td>
+            <td class="data"> 0 </td>
+            <td class="data"> 6 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 5 </td>
+            <td class="data"> 28 </td>
+            <td class="data"> 12 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M50</td>
+            <td class="data"> 2 </td>
+            <td class="data"> 22 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 23 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 19 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 3 </td>
+            <td class="data"> 2 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+        <tr nowrap>
+            <td class="dir">M51</td>
+            <td class="data"> 28 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 1 </td>
+            <td class="data"> 0 </td>
+            <td class="data"> 13 </td>
+            <td class="data"> 8 </td>
+            <td class="data"> 4 </td>
+            <td class="data"> 0 </td>
+            
+        </tr>
+
+        
+    </table>
+</div>
+
+
+
+
+<script type="text/javascript">
+// Parse the data from an inline table using the Highcharts Data plugin
+Highcharts.chart('container', {
+    data: {
+        table: 'freq',
+        startRow: 1,
+        endRow: 65,
+        endColumn: 11
+    },
+
+    chart: {
+        polar: true,
+        type: 'column'
+    },
+
+    title: {
+        text: ' '
+    },
+
+
+    pane: {
+        size: '90%'
+    },
+
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        y: 100,
+        layout: 'vertical'
+    },
+
+    xAxis: {
+        tickmarkPlacement: 'on'
+    },
+
+    yAxis: {
+        min: 0,
+        endOnTick: false,
+        showLastLabel: true,
+        title: {
+            text: 'Frequency'
+        },
+        labels: {
+            formatter: function () {
+                return this.value;
+            }
+        },
+        reversedStacks: false
+    },
+
+
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            shadow: false,
+            groupPadding: 0,
+            pointPlacement: 'on'
+        }
+    }
+});
+		</script>
+	</body>
+</html>
